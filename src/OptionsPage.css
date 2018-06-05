@@ -1,0 +1,9 @@
+.options-page {
+  padding: 16px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.options-page h1 {
+  font-size: 4em;
+}

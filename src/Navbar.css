@@ -1,0 +1,44 @@
+.navbar {
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 16px;
+  padding-right: 26px;
+  background: #EEE;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+}
+
+.nav-left {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 16px;
+  align-items: center;
+}
+
+.nav-left button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-left span {
+  font-size: 1.25em;
+}
+
+.nav-right span {
+  font-size: 1em;
+}
+
+.surf-status {
+  background: #56FFA4;
+  text-align: center;
+  color: rgba(0,0,0,0.54);
+  padding: 2px 0;
+  position: relative;
+  z-index: -1;
+}
+
+.surf-status span {
+  font-size: .875em;
+}
