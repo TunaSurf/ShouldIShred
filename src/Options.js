@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import './Options.css';
 import { default as Locations } from './LocationList';
 
@@ -11,7 +12,8 @@ class Options extends Component {
     }
     this.handleRegionChange = this.handleRegionChange.bind(this);
     this.handleLocationChange = this.handleLocationChange.bind(this);
-    this.postLocation = this.postLocation.bind(this);
+    this.submitHandler = this.submitHandler.bind(this);
+    // this.postLocation = this.postLocation.bind(this);
   }
 
   handleRegionChange(e) {
@@ -24,21 +26,26 @@ class Options extends Component {
     this.setState({ location });
   }
 
-  postLocation() {
-    if(this.state.location) {
-      console.log(this.state.location);
-      fetch('/api/locations', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          userLocation: this.state.location
-        })
-      });
-    };
+  submitHandler(event) {
+    event.preventDefault();
+    if(this.state.location) this.props.history.push(this.state.location);
   }
+
+  // postLocation() {
+  //   if(this.state.location) {
+  //     console.log(this.state.location);
+  //     fetch('/api/locations', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Accept': 'application/json',
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         userLocation: this.state.location
+  //       })
+  //     });
+  //   };
+  // }
 
   render() {
     let locationSelect = (
@@ -54,7 +61,7 @@ class Options extends Component {
     }
 
     return (
-      <form>
+      <form onSubmit={this.submitHandler}>
         <select 
           name="region-select" 
           id="region-select" 
@@ -82,10 +89,10 @@ class Options extends Component {
           <option value="" disabled>Location</option>
           {locationSelect}
         </select>
-        <button type="button" onClick={this.postLocation}>Go</button>
+        <button onClick={this.postLocation}>Go</button>
       </form>
     );
   }
 }
 
-export default Options;
+export default withRouter(Options);
