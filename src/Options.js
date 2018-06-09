@@ -28,6 +28,7 @@ class Options extends Component {
   submitHandler(event) {
     event.preventDefault();
     if(this.state.location) this.props.history.push(this.state.location);
+    this.props.setLocation();
   }
 
   render() {

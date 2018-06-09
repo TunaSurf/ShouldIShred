@@ -7,7 +7,7 @@ const express     = require('express'),
 const app         = express();
 
 const locationData = {
-  location: "Virginia Beach",
+  locationName: "Virginia Beach",
   swellHeight: 3.8,
   swellDirection: 185,
   swellPeriod: 11.2,
@@ -15,6 +15,17 @@ const locationData = {
   windDirection: 65,
   prevTide: 1200,
   nextTide: 1800 
+}
+
+const elizabethData = {
+  locationName: "Cape Elizabeth",
+  swellHeight: 1.2,
+  swellDirection: 185,
+  swellPeriod: 11.2,
+  windSpeed: 8,
+  windDirection: 65,
+  prevTide: 1200,
+  nextTide: 1800
 }
 
 // mongoose.Promise = global.Promise;
@@ -34,7 +45,11 @@ app.get('/', function (req, res) {
 });
 
 app.get('/:location', function (req, res) {
-  res.json(locationData);
+  if (req.params.location == 'cape-elizabeth') {
+    res.json(elizabethData);
+  } else {
+    res.json(locationData);
+  }
 });
 
 const PORT = process.env.PORT || 5000;

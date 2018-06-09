@@ -12,7 +12,7 @@ class Navbar extends Component {
           </div>
 
           <div className="nav-right">
-            <span>Virginia Beach</span>
+            <span>{this.props.locationName}</span>
           </div>
         </div>
         

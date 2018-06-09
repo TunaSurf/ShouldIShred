@@ -22,12 +22,17 @@ class App extends Component {
     }
     this.handleOpenSidebar = this.handleOpenSidebar.bind(this);
     this.handleCloseSidebar = this.handleCloseSidebar.bind(this);
+    this.handleSetLocation = this.handleSetLocation.bind(this);
   }
 
   componentDidMount() {
+    this.setFromApi();
+  }
+
+  setFromApi() {
     this.callApi()
-      .then(res => this.setState({ 
-        locationName: res.location, 
+      .then(res => this.setState({
+        locationName: res.locationName,
         swellHeight: res.swellHeight,
         swellDirection: res.swellDirection,
         swellPeriod: res.swellPeriod,
@@ -58,18 +63,24 @@ class App extends Component {
   handleCloseSidebar() {
     this.setState({ showSidebar: false });
   }
+
+  handleSetLocation() {
+    this.handleCloseSidebar();
+    this.callApi();
+  }
   
 
   render() {
     return (
       <div className="App">
         <Navbar 
-          location={this.state.userLocation} 
+          locationName={this.state.locationName}
           handleOpenSidebar={this.handleOpenSidebar} 
         />
         <Sidebar 
           showSidebar={this.state.showSidebar} 
           closeSidebar={this.handleCloseSidebar} 
+          setLocation={this.handleSetLocation}
         />
         <CardList
           swellHeight={this.state.swellHeight}
@@ -80,7 +91,6 @@ class App extends Component {
           previousTide={this.state.prevTide}
           nextTide={this.state.nextTide} 
       />
-        <p>{this.state.locationName}</p>
       </div>
     );
   }

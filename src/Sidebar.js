@@ -36,7 +36,7 @@ class Sidebar extends Component {
         className={this.props.showSidebar ? "sidebar show-sidebar" : "sidebar"} 
         ref={this.setWrapperRef}
       >
-        <Options />
+        <Options setLocation={this.props.setLocation} />
       </section>
     );
   }
