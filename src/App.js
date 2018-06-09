@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
 // import logo from './logo.svg';
 import './App.css';
 import Navbar from './Navbar';
@@ -11,7 +10,14 @@ class App extends Component {
     super(props);
     this.state = {
       userLocation: '',
-      locationData: '',
+      locationName: '',
+      swellHeight: 0,
+      swellDirection: 0,
+      swellPeriod: 0,
+      windSpeed: 0,
+      windDirection: 0,
+      previousTide: 0,
+      nextTide: 0, 
       showSidebar: false
     }
     this.handleOpenSidebar = this.handleOpenSidebar.bind(this);
@@ -20,17 +26,28 @@ class App extends Component {
 
   componentDidMount() {
     this.callApi()
-      .then(res => this.setState({ locationData: res.express }))
+      .then(res => this.setState({ 
+        locationName: res.location, 
+        swellHeight: res.swellHeight,
+        swellDirection: res.swellDirection,
+        swellPeriod: res.swellPeriod,
+        windSpeed: res.windSpeed,
+        windDirection: res.windDirection,
+        previousTide: res.prevTide,
+        nextTide: res.nextTide
+      }))
       .catch(err => console.log(err));
   }
 
   callApi = async () => {
-    let path = window.location.pathname;
+    //gets stuck if path is at '/'
+    let path = window.location.pathname === "/" ? '/placeholder' : window.location.pathname;
+    console.log(path);
     const response = await fetch(path);
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
-    console.log("hello");
+
     return body;
   }
 
@@ -54,9 +71,8 @@ class App extends Component {
           showSidebar={this.state.showSidebar} 
           closeSidebar={this.handleCloseSidebar} 
         />
-        <Route exact={true} path="/" component={CardList} />
-        <Route path="/:location" component={CardList} />
-        {this.state.response}
+        <CardList />
+        <p>{this.state.locationName}</p>
       </div>
     );
   }

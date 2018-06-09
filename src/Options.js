@@ -13,7 +13,6 @@ class Options extends Component {
     this.handleRegionChange = this.handleRegionChange.bind(this);
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
-    // this.postLocation = this.postLocation.bind(this);
   }
 
   handleRegionChange(e) {
@@ -30,22 +29,6 @@ class Options extends Component {
     event.preventDefault();
     if(this.state.location) this.props.history.push(this.state.location);
   }
-
-  // postLocation() {
-  //   if(this.state.location) {
-  //     console.log(this.state.location);
-  //     fetch('/api/locations', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Accept': 'application/json',
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         userLocation: this.state.location
-  //       })
-  //     });
-  //   };
-  // }
 
   render() {
     let locationSelect = (

@@ -1,10 +1,21 @@
 const express     = require('express'),
-      bodyParser  = require('body-parser'),
-      mongoose    = require('mongoose'),
-      Location    = require('./models/location.js'),
-      url         = 'mongodb://chase:password1@ds249530.mlab.com:49530/shred_locations';
+      bodyParser  = require('body-parser');
+      // mongoose    = require('mongoose'),
+      // Location    = require('./models/location.js'),
+      // url         = 'mongodb://chase:password1@ds249530.mlab.com:49530/shred_locations';
 
 const app         = express();
+
+const locationData = {
+  location: "Virginia Beach",
+  swellHeight: 3.8,
+  swellDirection: 185,
+  swellPeriod: 11.2,
+  windSpeed: 8,
+  windDirection: 65,
+  prevTide: 1200,
+  nextTide: 1800 
+}
 
 // mongoose.Promise = global.Promise;
 // mongoose.connect(url, function (err, db) {
@@ -19,20 +30,11 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));
 
 app.get('/', function (req, res) {
-  res.json('you did it');
+  res.json(locationData);
 });
 
 app.get('/:location', function (req, res) {
-  res.send('Virginia Beach');
-})
-
-app.post('/api/locations', function (req, res) {
-  // Location.create({
-  //   location: req.body.location
-  // }).then(location => {
-  //   res.json(location)
-  // });
-  console.log(req.body);
+  res.json(locationData);
 });
 
 const PORT = process.env.PORT || 5000;
