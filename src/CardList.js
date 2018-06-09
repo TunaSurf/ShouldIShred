@@ -10,13 +10,23 @@ class CardList extends Component {
     return (
       <div className="card-container">
         <Card cardName="Swell">
-          <Swell />
+          <Swell
+            swellHeight={this.props.swellHeight}
+            swellDirection={this.props.swellDirection}
+            swellPeriod={this.props.swellPeriod}
+          />
         </Card>
         <Card cardName="Wind">
-          <Wind />
+          <Wind
+            windSpeed={this.props.windSpeed}
+            windDirection={this.props.windDirection}
+          />
         </Card>
         <Card cardName="Tide">
-          <Tide />
+          <Tide
+            previousTide={this.props.prevTide}
+            nextTide={this.props.nextTide} 
+          />
         </Card>
       </div>
     );

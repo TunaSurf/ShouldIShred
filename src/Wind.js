@@ -6,7 +6,7 @@ class Wind extends Component {
     return (
       <div className="card-contents">
         <p>Clean</p>
-        <p>6mph @ ESE</p>
+        <p>{this.props.windSpeed}mph @ {this.props.windDirection}°ESE</p>
       </div>
     );
   }

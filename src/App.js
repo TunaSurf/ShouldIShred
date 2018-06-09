@@ -71,7 +71,15 @@ class App extends Component {
           showSidebar={this.state.showSidebar} 
           closeSidebar={this.handleCloseSidebar} 
         />
-        <CardList />
+        <CardList
+          swellHeight={this.state.swellHeight}
+          swellDirection={this.state.swellDirection}
+          swellPeriod={this.state.swellPeriod}
+          windSpeed={this.state.windSpeed}
+          windDirection={this.state.windDirection}
+          previousTide={this.state.prevTide}
+          nextTide={this.state.nextTide} 
+      />
         <p>{this.state.locationName}</p>
       </div>
     );
