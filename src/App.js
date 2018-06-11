@@ -9,6 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      urlPath: window.location.pathname,
       userLocation: '',
       locationName: '',
       swellHeight: 0,
@@ -46,7 +47,7 @@ class App extends Component {
 
   callApi = async () => {
     //gets stuck if path is at '/'
-    let path = window.location.pathname === "/" ? '/placeholder' : window.location.pathname;
+    let path = this.state.urlPath === "/" ? '/placeholder' : this.state.urlPath;
     console.log(path);
     const response = await fetch(path);
     const body = await response.json();
@@ -66,7 +67,14 @@ class App extends Component {
 
   handleSetLocation() {
     this.handleCloseSidebar();
-    this.callApi();
+    this.setState({ urlPath: window.location.pathname });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.urlPath !== prevProps.location.pathname) {
+      this.setFromApi();
+      // console.log(prevProps.location.pathname);
+    }
   }
   
 
