@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Options.css';
 import { default as Locations } from './LocationList';
 
@@ -45,7 +46,7 @@ class Options extends Component {
     }
 
     return (
-      <form onSubmit={this.submitHandler}>
+      <form>
         <select 
           name="region-select" 
           id="region-select" 
@@ -73,7 +74,9 @@ class Options extends Component {
           <option value="" disabled>Location</option>
           {locationSelect}
         </select>
-        <button onClick={this.postLocation}>Go</button>
+        <Link to={`/${this.state.location}`} >
+          <button type="button">Go</button>
+        </Link>
       </form>
     );
   }
