@@ -8,7 +8,7 @@ class OptionsPage extends Component {
       <section className="options-page">
         <h1>Should I Shred</h1>
         <h2>Local surf reports</h2>
-        <Options setLocation={this.props.setLocation} />
+        <Options />
         <span>About Should I Shred</span>
       </section>
     );
