@@ -8,7 +8,6 @@ class LocationPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userLocation: '',
       locationName: '',
       swellHeight: 0,
       swellDirection: 0,
@@ -25,6 +24,11 @@ class LocationPage extends Component {
 
   componentDidMount() {
     this.setFromApi(this.props.match.url);
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.handleCloseSidebar();
+    this.setFromApi(newProps.match.url);
   }
 
   setFromApi(location) {
@@ -57,11 +61,6 @@ class LocationPage extends Component {
 
   handleCloseSidebar() {
     this.setState({ showSidebar: false });
-  }
-
-  componentWillReceiveProps(newProps) {
-    this.handleCloseSidebar();
-    this.setFromApi(newProps.match.url);
   }
 
   render() {
