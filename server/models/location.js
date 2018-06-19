@@ -4,6 +4,7 @@ let Schema = mongoose.Schema;
 
 const locationSchema = new Schema({
   time: Date,
+  key: String,
   locationName: String,
   swellHeight: Number,
   swellDirection: Number,

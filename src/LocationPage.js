@@ -8,14 +8,17 @@ class LocationPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      locationName: '',
-      swellHeight: 0,
-      swellDirection: 0,
-      swellPeriod: 0,
-      windSpeed: 0,
-      windDirection: 0,
-      previousTide: 0,
-      nextTide: 0,
+      locationData: {
+        locationName: '',
+        swellHeight: 0,
+        swellDirection: 0,
+        swellPeriod: 0,
+        windSpeed: 0,
+        windDirection: 0,
+        previousTide: 0,
+        nextTide: 0,
+        shoreDirection: 0,
+      },
       showSidebar: false
     }
     this.handleOpenSidebar = this.handleOpenSidebar.bind(this);
@@ -33,16 +36,7 @@ class LocationPage extends Component {
 
   setFromApi(location) {
     this.callApi(location)
-      .then(res => this.setState({
-        locationName: res.locationName,
-        swellHeight: res.swellHeight,
-        swellDirection: res.swellDirection,
-        swellPeriod: res.swellPeriod,
-        windSpeed: res.windSpeed,
-        windDirection: res.windDirection,
-        previousTide: res.prevTide,
-        nextTide: res.nextTide
-      }))
+      .then(res => this.setState({ locationData: res }))
       .catch(err => console.log(err));
   }
 
@@ -51,7 +45,6 @@ class LocationPage extends Component {
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
-
     return body;
   }
 
@@ -67,7 +60,7 @@ class LocationPage extends Component {
     return (
       <div>
         <Navbar
-          locationName={this.state.locationName}
+          locationName={this.state.locationData.locationName}
           handleOpenSidebar={this.handleOpenSidebar}
         />
         <Sidebar
@@ -75,13 +68,14 @@ class LocationPage extends Component {
           closeSidebar={this.handleCloseSidebar}
         />
         <CardList
-          swellHeight={this.state.swellHeight}
-          swellDirection={this.state.swellDirection}
-          swellPeriod={this.state.swellPeriod}
-          windSpeed={this.state.windSpeed}
-          windDirection={this.state.windDirection}
-          previousTide={this.state.prevTide}
-          nextTide={this.state.nextTide}
+          swellHeight={this.state.locationData.swellHeight}
+          swellDirection={this.state.locationData.swellDirection}
+          swellPeriod={this.state.locationData.swellPeriod}
+          windSpeed={this.state.locationData.windSpeed}
+          windDirection={this.state.locationData.windDirection}
+          previousTide={this.state.locationData.prevTide}
+          nextTide={this.state.locationData.nextTide}
+          shoreDirection={this.state.locationData.shoreDirection}
         />
       </div>
     );

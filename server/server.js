@@ -6,27 +6,27 @@ const express     = require('express'),
 
 const app         = express();
 
-const locationData = {
-  locationName: "Virginia Beach",
-  swellHeight: 3.8,
-  swellDirection: 185,
-  swellPeriod: 11.2,
-  windSpeed: 8,
-  windDirection: 65,
-  prevTide: 1200,
-  nextTide: 1800 
-}
+// const locationData = {
+//   locationName: "Virginia Beach",
+//   swellHeight: 3.8,
+//   swellDirection: 185,
+//   swellPeriod: 11.2,
+//   windSpeed: 8,
+//   windDirection: 65,
+//   prevTide: 1200,
+//   nextTide: 1800 
+// }
 
-const elizabethData = {
-  locationName: "Cape Elizabeth",
-  swellHeight: 1.2,
-  swellDirection: 185,
-  swellPeriod: 11.2,
-  windSpeed: 8,
-  windDirection: 65,
-  prevTide: 1200,
-  nextTide: 1800
-}
+// const elizabethData = {
+//   locationName: "Cape Elizabeth",
+//   swellHeight: 1.2,
+//   swellDirection: 185,
+//   swellPeriod: 11.2,
+//   windSpeed: 8,
+//   windDirection: 65,
+//   prevTide: 1200,
+//   nextTide: 1800
+// }
 
 mongoose.Promise = global.Promise;
 mongoose.connect(url, function (err, db) {
@@ -40,16 +40,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));
 
+
 app.get('/', function (req, res) {
   res.json(locationData);
 });
 
 app.get('/:location', function (req, res) {
-  if (req.params.location == 'cape-elizabeth') {
-    res.json(elizabethData);
-  } else {
-    res.json(locationData);
-  }
+  Location.find({"key": req.params.location}, function(err, location) {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log(location[0]);
+      res.json(location[0]);
+    }
+  });
 });
 
 const PORT = process.env.PORT || 5000;
