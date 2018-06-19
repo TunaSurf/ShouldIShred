@@ -6,28 +6,6 @@ const express     = require('express'),
 
 const app         = express();
 
-// const locationData = {
-//   locationName: "Virginia Beach",
-//   swellHeight: 3.8,
-//   swellDirection: 185,
-//   swellPeriod: 11.2,
-//   windSpeed: 8,
-//   windDirection: 65,
-//   prevTide: 1200,
-//   nextTide: 1800 
-// }
-
-// const elizabethData = {
-//   locationName: "Cape Elizabeth",
-//   swellHeight: 1.2,
-//   swellDirection: 185,
-//   swellPeriod: 11.2,
-//   windSpeed: 8,
-//   windDirection: 65,
-//   prevTide: 1200,
-//   nextTide: 1800
-// }
-
 mongoose.Promise = global.Promise;
 mongoose.connect(url, function (err, db) {
   if (err) {
@@ -39,11 +17,6 @@ mongoose.connect(url, function (err, db) {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));
-
-
-app.get('/', function (req, res) {
-  res.json(locationData);
-});
 
 app.get('/:location', function (req, res) {
   Location.find({"key": req.params.location}, function(err, location) {
