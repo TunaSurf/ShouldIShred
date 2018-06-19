@@ -1,8 +1,8 @@
 const express     = require('express'),
       bodyParser  = require('body-parser');
-      // mongoose    = require('mongoose'),
-      // Location    = require('./models/location.js'),
-      // url         = 'mongodb://chase:password1@ds249530.mlab.com:49530/shred_locations';
+      mongoose    = require('mongoose'),
+      url = 'mongodb://localhost/shred_db',
+      Location    = require('./models/location.js');
 
 const app         = express();
 
@@ -28,14 +28,14 @@ const elizabethData = {
   nextTide: 1800
 }
 
-// mongoose.Promise = global.Promise;
-// mongoose.connect(url, function (err, db) {
-//   if (err) {
-//     console.log('Unable to connect to the mongoDB server. Error:', err);
-//   } else {
-//     console.log('Connection established to', url);
-//   }
-// });
+mongoose.Promise = global.Promise;
+mongoose.connect(url, function (err, db) {
+  if (err) {
+    console.log('Unable to connect to the mongoDB server. Error:', err);
+  } else {
+    console.log('Connection established to', url);
+  }
+});
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));
