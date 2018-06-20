@@ -135,6 +135,7 @@ locationArr.forEach(function(location) {
   new Location({
     time: new Date().toISOString(),
     key: location.replace(/\s+/g, '-').toLowerCase(),
+    buoyId: 44099,
     locationName: location,
     swellHeight: 3,
     swellDirection: 3,

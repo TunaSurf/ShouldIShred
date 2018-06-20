@@ -1,5 +1,4 @@
 const express     = require('express'),
-      bodyParser  = require('body-parser');
       mongoose    = require('mongoose'),
       fetch       = require('node-fetch'),
       buoy        = require('buoy-js'),
@@ -16,22 +15,45 @@ mongoose.connect(url, function (err, db) {
     console.log('Connection established to', url);
   }
 });
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));
 
-console.log(buoy);
 
-app.get('/:location', function (req, res) {
+function getBuoyData() {
   const buoysURL = 'http://www.ndbc.noaa.gov/data/latest_obs/latest_obs.txt';
-  
-  fetch(buoysURL)
+  let buoyData = fetch(buoysURL)
     .then(res => res.text())
     .then(body => buoy.default.Buoy.lastestObservation(body))
     .catch(err => console.error(err));
 
+  return buoyData
+}
+
+function updateDB() {
+  getBuoyData()
+    .then(res => {
+      Location.find({}, function (err, locations) {
+        locations.forEach(location => {
+          let buoyId = location.buoyId;
+          let buoyMatch = res.find(buoy => buoy.stationID == buoyId);
+          // console.log(buoyMatch.waveHeight);
+          Location.updateMany({ buoyId: buoyId }, { $set: { 
+            time: new Date().toISOString(),
+            swellHeight: buoyMatch.waveHeight,
+            swellDirection: buoyMatch.dominantPeriodWaveDirection,
+            swellPeriod: buoyMatch.wavePeriod
+          } }, function(err) {
+            if(err) console.log(err);
+          });
+        })
+      })
+    })
+}
+
+updateDB();
+setInterval(updateDB, 60000);
 
 
+app.get('/:location', function (req, res) {
   Location.find({"key": req.params.location}, function(err, location) {
     if(err) {
       console.log(err);
