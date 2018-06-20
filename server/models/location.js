@@ -9,6 +9,7 @@ const locationSchema = new Schema({
   locationName: String,
   swellHeight: Number,
   swellDirection: Number,
+  swellCompass: String,
   swellPeriod: Number,
   windSpeed: Number,
   windDirection: Number,

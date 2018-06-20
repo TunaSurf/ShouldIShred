@@ -12,6 +12,7 @@ class LocationPage extends Component {
         locationName: '',
         swellHeight: 0,
         swellDirection: 0,
+        swellCompass: 'N',
         swellPeriod: 0,
         windSpeed: 0,
         windDirection: 0,
@@ -70,6 +71,7 @@ class LocationPage extends Component {
         <CardList
           swellHeight={this.state.locationData.swellHeight}
           swellDirection={this.state.locationData.swellDirection}
+          swellCompass={this.state.locationData.swellCompass}
           swellPeriod={this.state.locationData.swellPeriod}
           windSpeed={this.state.locationData.windSpeed}
           windDirection={this.state.locationData.windDirection}

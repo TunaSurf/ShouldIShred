@@ -13,6 +13,7 @@ class CardList extends Component {
           <Swell
             swellHeight={this.props.swellHeight}
             swellDirection={this.props.swellDirection}
+            swellCompass={this.props.swellCompass}
             swellPeriod={this.props.swellPeriod}
           />
         </Card>

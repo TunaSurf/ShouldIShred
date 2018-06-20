@@ -8,7 +8,7 @@ class Swell extends Component {
     return (
       <div className="card-contents">
         <span className="swell-height">{swellLowRange} - {swellUpRange}ft</span>
-        <p>{this.props.swellHeight}ft @ {this.props.swellPeriod}sec {this.props.swellDirection}°SE</p>
+        <p>{this.props.swellHeight}ft @ {this.props.swellPeriod}sec {this.props.swellDirection}° {this.props.swellCompass}</p>
       </div>
     );
   }

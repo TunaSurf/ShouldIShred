@@ -18,9 +18,9 @@ mongoose.connect(url, function (err, db) {
 app.use(express.static(__dirname + "/public"));
 
 
-function getBuoyData() {
+async function getBuoyData() {
   const buoysURL = 'http://www.ndbc.noaa.gov/data/latest_obs/latest_obs.txt';
-  let buoyData = fetch(buoysURL)
+  let buoyData = await fetch(buoysURL)
     .then(res => res.text())
     .then(body => buoy.default.Buoy.lastestObservation(body))
     .catch(err => console.error(err));
@@ -35,11 +35,12 @@ function updateDB() {
         locations.forEach(location => {
           let buoyId = location.buoyId;
           let buoyMatch = res.find(buoy => buoy.stationID == buoyId);
-          // console.log(buoyMatch.waveHeight);
+          console.log(buoyMatch);
           Location.updateMany({ buoyId: buoyId }, { $set: { 
             time: new Date().toISOString(),
             swellHeight: buoyMatch.waveHeight,
             swellDirection: buoyMatch.dominantPeriodWaveDirection,
+            swellCompass: buoyMatch.dominantPeriodWaveDirectionCompass,
             swellPeriod: buoyMatch.wavePeriod
           } }, function(err) {
             if(err) console.log(err);
@@ -50,7 +51,7 @@ function updateDB() {
 }
 
 updateDB();
-setInterval(updateDB, 60000);
+setInterval(updateDB, (5 * 60 * 1000));
 
 
 app.get('/:location', function (req, res) {

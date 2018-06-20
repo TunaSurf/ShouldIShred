@@ -139,6 +139,7 @@ locationArr.forEach(function(location) {
     locationName: location,
     swellHeight: 3,
     swellDirection: 3,
+    swellCompass: 'ESE',
     swellPeriod: 3,
     windSpeed: 3,
     windDirection: 3,
