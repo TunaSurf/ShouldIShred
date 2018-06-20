@@ -6,9 +6,6 @@ const express     = require('express'),
       url         = 'mongodb://localhost/shred_db',
       Location    = require('./models/location.js');
 
-// import Buoy from 'buoy-js';
-// import Tide from 'buoy-js';
-
 const app         = express();
 
 mongoose.Promise = global.Promise;
@@ -23,26 +20,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));
 
-function setFromApi(buoysURL) {
-  this.callApi(buoysURL)
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
-}
-
-callApi = async (buoys) => {
-  const response = await fetch(buoys);
-  const body = await response.text();
-
-  if (response.status !== 200) throw Error(body.message);
-  return body;
-}
+console.log(buoy);
 
 app.get('/:location', function (req, res) {
   const buoysURL = 'http://www.ndbc.noaa.gov/data/latest_obs/latest_obs.txt';
   
-  setFromApi(buoysURL);
+  fetch(buoysURL)
+    .then(res => res.text())
+    .then(body => buoy.default.Buoy.lastestObservation(body))
+    .catch(err => console.error(err));
 
-  
 
 
   Location.find({"key": req.params.location}, function(err, location) {
