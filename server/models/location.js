@@ -5,7 +5,8 @@ let Schema = mongoose.Schema;
 const locationSchema = new Schema({
   time: Date,
   key: String,
-  buoyId: Number,
+  waveId: Number,
+  windId: Mixed,
   locationName: String,
   swellHeight: Number,
   swellDirection: Number,

@@ -33,15 +33,17 @@ function updateDB() {
     .then(res => {
       Location.find({}, function (err, locations) {
         locations.forEach(location => {
-          let buoyId = location.buoyId;
-          let buoyMatch = res.find(buoy => buoy.stationID == buoyId);
-          console.log(buoyMatch);
-          Location.updateMany({ buoyId: buoyId }, { $set: { 
+          let waveId = location.waveId;
+          let windId = location.windId;
+          let waveBuoyMatch = res.find(buoy => buoy.stationID == waveId);
+          let windBuoyMatch = res.find(buoy => buoy.stationID == windId);
+          // console.log(waveBuoyMatch);
+          Location.updateMany({ waveId: waveId }, { $set: { 
             time: new Date().toISOString(),
-            swellHeight: buoyMatch.waveHeight,
-            swellDirection: buoyMatch.dominantPeriodWaveDirection,
-            swellCompass: buoyMatch.dominantPeriodWaveDirectionCompass,
-            swellPeriod: buoyMatch.wavePeriod
+            swellHeight: Math.round(waveBuoyMatch.waveHeight * 3.28 * 10) / 10,
+            swellDirection: waveBuoyMatch.dominantPeriodWaveDirection,
+            swellCompass: waveBuoyMatch.dominantPeriodWaveDirectionCompass,
+            swellPeriod: waveBuoyMatch.wavePeriod
           } }, function(err) {
             if(err) console.log(err);
           });
