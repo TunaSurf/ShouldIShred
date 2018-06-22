@@ -37,13 +37,18 @@ function updateDB() {
           let windId = location.windId;
           let waveBuoyMatch = res.find(buoy => buoy.stationID == waveId);
           let windBuoyMatch = res.find(buoy => buoy.stationID == windId);
-          // console.log(waveBuoyMatch);
-          Location.updateMany({ waveId: waveId }, { $set: { 
+          console.log(waveBuoyMatch);
+          Location.updateMany({ buoyId: waveId }, { $set: { 
             time: new Date().toISOString(),
             swellHeight: Math.round(waveBuoyMatch.waveHeight * 3.28 * 10) / 10,
             swellDirection: waveBuoyMatch.dominantPeriodWaveDirection,
             swellCompass: waveBuoyMatch.dominantPeriodWaveDirectionCompass,
-            swellPeriod: waveBuoyMatch.wavePeriod
+            swellPeriod: waveBuoyMatch.wavePeriod,
+            windSpeed: windBuoyMatch.windSpeed,
+            windDirection: windBuoyMatch.windDirection,
+            windCompass: windBuoyMatch.windDirectionCompass,
+            airTemp: windBuoyMatch.airTemp,
+            waterTemp: waveBuoyMatch.waterTemp
           } }, function(err) {
             if(err) console.log(err);
           });
