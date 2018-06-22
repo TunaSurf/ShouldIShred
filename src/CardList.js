@@ -21,6 +21,8 @@ class CardList extends Component {
           <Wind
             windSpeed={this.props.windSpeed}
             windDirection={this.props.windDirection}
+            windCompass={this.props.windCompass}
+            shoreDirection={this.props.shoreDirection}
           />
         </Card>
         <Card cardName="Tide">

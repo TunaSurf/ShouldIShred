@@ -3,12 +3,13 @@ import './Swell.css';
 
 class Swell extends Component {
   render() {
-    let swellLowRange = Math.floor(this.props.swellHeight);
-    let swellUpRange = Math.ceil(this.props.swellHeight);
+    let height = Math.round(this.props.swellHeight * 3.28 * 10) / 10;
+    let swellLowRange = Math.floor(height);
+    let swellUpRange = Math.ceil(height);
     return (
       <div className="card-contents">
         <span className="swell-height">{swellLowRange} - {swellUpRange}ft</span>
-        <p>{this.props.swellHeight}ft @ {this.props.swellPeriod}sec {this.props.swellDirection}° {this.props.swellCompass}</p>
+        <p>{height}ft @ {this.props.swellPeriod}sec {this.props.swellDirection}° {this.props.swellCompass}<i className="fas fa-location-arrow" style={{ transform: `rotate(${this.props.swellDirection + 135}deg)` }}></i></p>
       </div>
     );
   }

@@ -79,9 +79,13 @@ class LocationPage extends Component {
           swellPeriod={this.state.locationData.swellPeriod}
           windSpeed={this.state.locationData.windSpeed}
           windDirection={this.state.locationData.windDirection}
+          windCompass={this.state.locationData.windCompass}
           previousTide={this.state.locationData.prevTide}
           nextTide={this.state.locationData.nextTide}
           shoreDirection={this.state.locationData.shoreDirection}
+          airTemp={this.state.locationData.airTemp}
+          waterTemp={this.state.locationData.waterTemp}
+          timeUpdated={this.state.locationData.timeUpdated}
         />
       </div>
     );

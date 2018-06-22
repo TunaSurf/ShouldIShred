@@ -37,17 +37,18 @@ function updateDB() {
           let windId = location.windId;
           let waveBuoyMatch = res.find(buoy => buoy.stationID == waveId);
           let windBuoyMatch = res.find(buoy => buoy.stationID == windId);
+          console.log(waveBuoyMatch);
           Location.updateMany({ waveId: waveId }, { $set: { 
             time: new Date().toISOString(),
-            swellHeight: waveBuoyMatch.waveHeight,
-            swellDirection: waveBuoyMatch.dominantPeriodWaveDirection,
-            swellCompass: waveBuoyMatch.dominantPeriodWaveDirectionCompass,
-            swellPeriod: waveBuoyMatch.wavePeriod,
-            windSpeed: windBuoyMatch.windSpeed,
-            windDirection: windBuoyMatch.windDirection,
-            windCompass: windBuoyMatch.windDirectionCompass,
-            airTemp: windBuoyMatch.airTemp,
-            waterTemp: waveBuoyMatch.waterTemp
+            swellHeight: waveBuoyMatch ? waveBuoyMatch.waveHeight : 0,
+            swellDirection: waveBuoyMatch ? waveBuoyMatch.dominantPeriodWaveDirection : 0,
+            swellCompass: waveBuoyMatch ? waveBuoyMatch.dominantPeriodWaveDirectionCompass : "N",
+            swellPeriod: waveBuoyMatch ? waveBuoyMatch.wavePeriod : 0,
+            windSpeed: waveBuoyMatch ? windBuoyMatch.windSpeed : 0,
+            windDirection: waveBuoyMatch ? windBuoyMatch.windDirection : 0,
+            windCompass: waveBuoyMatch ? windBuoyMatch.windDirectionCompass : "N",
+            airTemp: waveBuoyMatch ? windBuoyMatch.airTemp : 0,
+            waterTemp: waveBuoyMatch ? waveBuoyMatch.waterTemp : 0
           } }, function(err) {
             if(err) console.log(err);
           });
