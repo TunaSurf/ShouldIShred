@@ -16,9 +16,13 @@ class LocationPage extends Component {
         swellPeriod: 0,
         windSpeed: 0,
         windDirection: 0,
+        windCompass: 'N',
         previousTide: 0,
         nextTide: 0,
         shoreDirection: 0,
+        airTemp: 0,
+        waterTemp: 0,
+        timeUpdated: null
       },
       showSidebar: false
     }

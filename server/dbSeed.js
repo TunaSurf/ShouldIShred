@@ -48,7 +48,7 @@ const locationArr = [
     "shoreDirection": 180
   },
   {
-    "name": "Newport",
+    "name": "Newport RI",
     "waveId": 44097,
     "windId": "NWPR1",
     "shoreDirection": 160
@@ -235,20 +235,20 @@ const locationArr = [
   },
   {
     "name": "Folly Beach",
-    "waveId": 0,
+    "waveId": 41004,
     "windId": "FBIS1",
     "shoreDirection": 155
   },
   {
     "name": "Edisto Beach",
-    "waveId": 0,
-    "windId": 0,
+    "waveId": 41004,
+    "windId": "ACXS1",
     "shoreDirection": 140
   },
   {
     "name": "Hilton Head",
-    "waveId": 0,
-    "windId": 41033,
+    "waveId": 41004,
+    "windId": "ACXS1",
     "shoreDirection": 135
   },
   {
@@ -391,7 +391,7 @@ const locationArr = [
   },
   {
     "name": "St George Island",
-    "waveId": 42309,
+    "waveId": 42039,
     "windId": "APCF1",
     "shoreDirection": 140
   },
@@ -464,8 +464,8 @@ const locationArr = [
   {
     "name": "South Padre Island",
     "waveId": 42019,
-    "windId": 0,
-    "shoreDirection": 0
+    "windId": "BZST2",
+    "shoreDirection": 80
   },
   {
     "name": "La Push",
@@ -498,9 +498,9 @@ const locationArr = [
     "shoreDirection": 280
   },
   {
-    "name": "Newport",
+    "name": "Newport OR",
     "waveId": 46229,
-    "windId": "NWP03",
+    "windId": "NWPO3",
     "shoreDirection": 280
   },
   {
@@ -766,10 +766,10 @@ const locationArr = [
 locationArr.forEach(function(location) {
   new Location({
     time: new Date().toISOString(),
-    key: location.replace(/\s+/g, '-').toLowerCase(),
-    waveId: 44099,
-    windId: 'WELM1',
-    locationName: location,
+    key: location.name.replace(/\s+/g, '-').toLowerCase(),
+    waveId: location.waveId,
+    windId: location.windId,
+    locationName: location.name,
     swellHeight: 3,
     swellDirection: 3,
     swellCompass: 'ESE',
@@ -781,7 +781,7 @@ locationArr.forEach(function(location) {
     waterTemp: 65,
     previousTide: new Date().toISOString(),
     nextTide: new Date().toISOString(),
-    shoreDirection: 3
+    shoreDirection: location.shoreDirection
   })
   .save(function(err, location) {
     if(err) {
