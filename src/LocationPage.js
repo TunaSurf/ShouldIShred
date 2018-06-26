@@ -80,6 +80,8 @@ class LocationPage extends Component {
       <div>
         <Navbar
           locationName={this.state.locationData.locationName}
+          swellHeight={swellHeight}
+          texture={texture}
           handleOpenSidebar={this.handleOpenSidebar}
         />
         <Sidebar
