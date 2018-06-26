@@ -44,10 +44,10 @@ function updateDB() {
             swellDirection: waveBuoyMatch ? waveBuoyMatch.dominantPeriodWaveDirection : 0,
             swellCompass: waveBuoyMatch ? waveBuoyMatch.dominantPeriodWaveDirectionCompass : "N",
             swellPeriod: waveBuoyMatch ? waveBuoyMatch.wavePeriod : 0,
-            windSpeed: waveBuoyMatch ? windBuoyMatch.windSpeed : 0,
-            windDirection: waveBuoyMatch ? windBuoyMatch.windDirection : 0,
-            windCompass: waveBuoyMatch ? windBuoyMatch.windDirectionCompass : "N",
-            airTemp: waveBuoyMatch ? windBuoyMatch.airTemp : 0,
+            windSpeed: windBuoyMatch ? windBuoyMatch.windSpeed : 0,
+            windDirection: windBuoyMatch ? windBuoyMatch.windDirection : 0,
+            windCompass: windBuoyMatch ? windBuoyMatch.windDirectionCompass : "N",
+            airTemp: windBuoyMatch ? windBuoyMatch.airTemp : 0,
             waterTemp: waveBuoyMatch ? waveBuoyMatch.waterTemp : 0
           } }, function(err) {
             if(err) console.log(err);

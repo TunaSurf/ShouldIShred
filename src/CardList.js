@@ -4,6 +4,7 @@ import Card from './Card';
 import Swell from './Swell';
 import Wind from './Wind';
 import Tide from './Tide';
+import Gear from './Gear';
 
 class CardList extends Component {
   render() {
@@ -22,13 +23,19 @@ class CardList extends Component {
             windSpeed={this.props.windSpeed}
             windDirection={this.props.windDirection}
             windCompass={this.props.windCompass}
-            shoreDirection={this.props.shoreDirection}
+            texture={this.props.texture}
           />
         </Card>
         <Card cardName="Tide">
           <Tide
             previousTide={this.props.prevTide}
             nextTide={this.props.nextTide} 
+          />
+        </Card>
+        <Card cardName="Gear">
+          <Gear
+            previousTide={this.props.prevTide}
+            nextTide={this.props.nextTide}
           />
         </Card>
       </div>
