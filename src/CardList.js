@@ -4,13 +4,15 @@ import Card from './Card';
 import Swell from './Swell';
 import Wind from './Wind';
 import Tide from './Tide';
-import Gear from './Gear';
 
 class CardList extends Component {
   render() {
     return (
       <div className="card-container">
-        <Card cardName="Swell">
+        <Card  
+          cardName="Swell"
+          locationName={this.props.locationName}
+        >
           <Swell
             swellHeight={this.props.swellHeight}
             swellDirection={this.props.swellDirection}
@@ -18,7 +20,10 @@ class CardList extends Component {
             swellPeriod={this.props.swellPeriod}
           />
         </Card>
-        <Card cardName="Conditions">
+        <Card 
+          cardName="Conditions"
+          locationName={this.props.locationName}
+        >
           <Wind
             windSpeed={this.props.windSpeed}
             windDirection={this.props.windDirection}
@@ -28,7 +33,10 @@ class CardList extends Component {
             waterTemp={this.props.waterTemp}
           />
         </Card>
-        <Card cardName="Tide">
+        <Card 
+          cardName="Tide"
+          locationName={this.props.locationName}
+        >
           <Tide
             locationName={this.props.locationName}
             previousTide={this.props.prevTide}

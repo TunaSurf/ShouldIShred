@@ -13,13 +13,13 @@
 .next-high .tide-label-left, 
 .next-low .tide-label-right {
   opacity: 0;
-  animation: label-down 400ms 1s cubic-bezier(.17,.67,.16,.99) forwards;
+  animation: label-down 400ms 900ms cubic-bezier(.17,.67,.16,.99) forwards;
 }
 
 .next-low .tide-label-left,
 .next-high .tide-label-right {
   opacity: 0;
-  animation: label-up 400ms 1s cubic-bezier(.17,.67,.16,.99) forwards;
+  animation: label-up 400ms 900ms cubic-bezier(.17,.67,.16,.99) forwards;
 }
 
 @keyframes label-down {

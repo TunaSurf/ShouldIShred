@@ -62,7 +62,7 @@ class Tide extends Component {
             <animateTransform 
               attributeName="transform" 
               type="translate" 
-              begin="650ms" 
+              begin="450ms" 
               dur="400ms" 
               from="0 0" 
               to="200 0" 
@@ -74,7 +74,7 @@ class Tide extends Component {
           <path className="flatline" d="M0,53.5c162.794,0 162.75,0 325,0" fill="none" stroke="#5EA8FF" strokeWidth="2">
             <animate 
               attributeName="d" 
-              begin="550ms" 
+              begin="350ms" 
               dur="400ms" 
               from="M0,53.5c162.794,0 162.75,0 325,0" 
               to={curve} 

@@ -2,6 +2,29 @@
   background: #FAFAFA;
   box-shadow: 0 4px 8px rgba(0,0,0,0.25);
   padding: 10px;
+  transform: rotateX(-90deg) perspective(500px);
+  transform-style: preserve-3d;
+  opacity: 0;
+  z-index: -1;
+}
+
+.Swell-card {
+  animation: flip-in 500ms cubic-bezier(.17,.67,.16,.99) forwards;
+}
+
+.Conditions-card {
+  animation: flip-in 500ms 70ms cubic-bezier(.17,.67,.16,.99) forwards;
+}
+
+.Tide-card {
+  animation: flip-in 500ms 140ms cubic-bezier(.17,.67,.16,.99) forwards;
+}
+
+@keyframes flip-in {
+  100% {
+    transform: rotateX(0);
+    opacity: 1;
+  }
 }
 
 .card-name {
