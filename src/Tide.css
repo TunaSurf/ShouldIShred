@@ -9,3 +9,35 @@
 .triangle {
   fill: rgba(0,0,0,0.54);
 }
+
+.next-high .tide-label-left, 
+.next-low .tide-label-right {
+  opacity: 0;
+  animation: label-down 400ms 1s cubic-bezier(.17,.67,.16,.99) forwards;
+}
+
+.next-low .tide-label-left,
+.next-high .tide-label-right {
+  opacity: 0;
+  animation: label-up 400ms 1s cubic-bezier(.17,.67,.16,.99) forwards;
+}
+
+@keyframes label-down {
+  0% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes label-up {
+  0% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

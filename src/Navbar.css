@@ -37,7 +37,7 @@
   position: relative;
   z-index: -1;
   transform: translateY(-20px);
-  animation: slide-in 300ms 250ms ease-in-out forwards;
+  animation: slide-in 400ms 250ms cubic-bezier(.17,.67,.16,.99) forwards;
 }
 
 .surf-status span {
