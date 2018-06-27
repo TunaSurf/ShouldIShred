@@ -32,12 +32,16 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <section 
-        className={this.props.showSidebar ? "sidebar show-sidebar" : "sidebar"} 
-        ref={this.setWrapperRef}
-      >
-        <Options setLocation={this.props.setLocation} />
-      </section>
+      <div className={this.props.showSidebar ? "sidebar-overlay show-sidebar" : "sidebar-overlay"}>
+        <section 
+          className={this.props.showSidebar ? "sidebar show-sidebar" : "sidebar"} 
+          ref={this.setWrapperRef}
+        >
+          <div className={this.props.showSidebar ? "sidebar-options show-sidebar" : "sidebar-options"} >
+            <Options setLocation={this.props.setLocation} />
+          </div>  
+        </section>
+      </div>  
     );
   }
 }

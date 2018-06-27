@@ -36,8 +36,16 @@
   padding: 2px 0;
   position: relative;
   z-index: -1;
+  transform: translateY(-20px);
+  animation: slide-in 300ms 250ms ease-in-out forwards;
 }
 
 .surf-status span {
   font-size: .875em;
+}
+
+@keyframes slide-in {
+  100% {
+    transform: translateY(0);
+  }
 }

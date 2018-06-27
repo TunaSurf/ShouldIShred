@@ -6,7 +6,7 @@ class Wind extends Component {
     return (
       <div className="card-contents">
         <p>Conditions: {this.props.texture}</p>
-        <p>{this.props.windCompass} @ {this.props.windSpeed}mph {this.props.windDirection}°<i className="fas fa-location-arrow" style={{ transform: `rotate(${this.props.windDirection + 135}deg)` }}></i></p>
+        <p>{this.props.windSpeed}mph {this.props.windDirection}° {this.props.windCompass} <i className="fas fa-location-arrow" style={{ transform: `rotate(${this.props.windDirection + 135}deg)` }}></i></p>
       </div>
     );
   }

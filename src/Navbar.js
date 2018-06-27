@@ -64,7 +64,7 @@ class Navbar extends Component {
           </div>
         </div>
         
-        <div className="surf-status" style={statusStyle}>
+        <div key={this.props.locationName} className="surf-status" style={statusStyle}>
           <span>{surfStatus}</span>
         </div>
       </header>
