@@ -18,12 +18,14 @@ class CardList extends Component {
             swellPeriod={this.props.swellPeriod}
           />
         </Card>
-        <Card cardName="Wind">
+        <Card cardName="Conditions">
           <Wind
             windSpeed={this.props.windSpeed}
             windDirection={this.props.windDirection}
             windCompass={this.props.windCompass}
             texture={this.props.texture}
+            airTemp={this.props.airTemp}
+            waterTemp={this.props.waterTemp}
           />
         </Card>
         <Card cardName="Tide">
@@ -31,12 +33,6 @@ class CardList extends Component {
             locationName={this.props.locationName}
             previousTide={this.props.prevTide}
             nextTide={this.props.nextTide} 
-          />
-        </Card>
-        <Card cardName="Gear">
-          <Gear
-            previousTide={this.props.prevTide}
-            nextTide={this.props.nextTide}
           />
         </Card>
       </div>
