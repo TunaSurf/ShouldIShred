@@ -28,6 +28,7 @@ class CardList extends Component {
         </Card>
         <Card cardName="Tide">
           <Tide
+            locationName={this.props.locationName}
             previousTide={this.props.prevTide}
             nextTide={this.props.nextTide} 
           />

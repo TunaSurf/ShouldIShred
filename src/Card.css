@@ -1,16 +1,16 @@
 .card {
   background: #FAFAFA;
   box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+  padding: 10px;
 }
 
 .card-name {
   text-align: right;
-  padding: 10px;
   font-style: italic;
   color: rgba(0,0,0,0.54);
   font-size: .875em;
 }
 
 .card-contents {
-  padding: 10px;
+  margin-bottom: .875em;
 }

@@ -89,6 +89,7 @@ class LocationPage extends Component {
           closeSidebar={this.handleCloseSidebar}
         />
         <CardList
+          locationName={this.state.locationData.locationName}
           swellHeight={swellHeight}
           swellDirection={this.state.locationData.swellDirection}
           swellCompass={this.state.locationData.swellCompass}

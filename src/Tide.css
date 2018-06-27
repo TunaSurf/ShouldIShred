@@ -1,0 +1,11 @@
+.tide-graph {
+  margin-top: 10px;
+}
+
+.tide-graph-label {
+  fill: rgba(0,0,0,0.87);
+}
+
+.triangle {
+  fill: rgba(0,0,0,0.54);
+}
