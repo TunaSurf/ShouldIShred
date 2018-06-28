@@ -7,7 +7,7 @@ class Tide extends Component {
     const nextLowCurve = "M0,2c162.794,0 162.75,103 325,103";
     let nextHighLabels = (
       <g className="next-high">
-        <g className="tide-label-right" fontFamily="'Roboto-Light','Roboto'" fontSize="10">
+        <g className="tide-label-right" fontFamily="'Overpass-Light','Overpass'" fontSize="10">
           <text className="tide-graph-label" x="288.959" y="29.09" transform="translate(-6.01 -6.728)">
             12:00 PM
           </text>
@@ -16,7 +16,7 @@ class Tide extends Component {
           </text>
           <path className="triangle" d="M325,12.155l-6,0l3,-5.155l3,5.155Z" />
         </g>
-        <g className="tide-label-left" fontFamily="'Roboto-Light','Roboto'" fontSize="10">
+        <g className="tide-label-left" fontFamily="'Overpass-Light','Overpass'" fontSize="10">
           <text className="tide-graph-label" x="288.959" y="29.09" transform="translate(-289.418 52.657)">
             12:00 PM
           </text>
@@ -29,7 +29,7 @@ class Tide extends Component {
     );
     let nextLowLabels = (
       <g className="next-low">
-        <g className="tide-label-right" fontFamily="'Roboto-Light','Roboto'" fontSize="10">
+        <g className="tide-label-right" fontFamily="'Overpass-Light','Overpass'" fontSize="10">
           <text className="tide-graph-label" x="288.959" y="29.09" transform="translate(-289.418 -6.728)">
             12:00 PM
           </text>
@@ -38,7 +38,7 @@ class Tide extends Component {
           </text>
           <path className="triangle" d="M319,94.845l6,0l-3,5.155l-3,-5.155Z" />
         </g>
-        <g className="tide-label-left" fontFamily="'Roboto-Light','Roboto'" fontSize="10">
+        <g className="tide-label-left" fontFamily="'Overpass-Light','Overpass'" fontSize="10">
           <text className="tide-graph-label" x="288.959" y="29.09" transform="translate(-6.01 52.657)">
             12:00 PM
           </text>

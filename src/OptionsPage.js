@@ -7,9 +7,9 @@ class OptionsPage extends Component {
     return (
       <section className="options-page">
         <h1>Should I Shred</h1>
-        <h2>Local surf reports</h2>
+        <p>Local surf reports</p>
         <Options />
-        <span>About Should I Shred</span>
+        <p>About Should I Shred</p>
       </section>
     );
   }

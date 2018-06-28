@@ -20,10 +20,18 @@
   background: none;
   border: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
-.nav-left span {
-  font-size: 1.25em;
+.nav-left button svg {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.nav-left button span {
+  font-family: "Permanent Marker";
+  font-size: 2.1em;
 }
 
 .nav-right span {

@@ -55,8 +55,15 @@ class Navbar extends Component {
       <header>
         <div className="navbar">
           <div className="nav-left">
-            <button type="button" onClick={this.props.handleOpenSidebar}>+</button>
-            <span className="site-name">Shred</span>
+            <button type="button" onClick={this.props.handleOpenSidebar}>
+              <svg viewBox="0 0 44 23" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd" strokeLinejoin="round" strokeMiterlimit="1.4142">
+                <g className="menu">  
+                  <path d="M0 20h44v3H0z" />
+                  <path d="M0 10h44v3H0z" />
+                  <path d="M0 0h44v3H0z" />
+                </g>
+              </svg>
+              <span>Shred</span></button>
           </div>
 
           <div className="nav-right">
