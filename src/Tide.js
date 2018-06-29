@@ -3,35 +3,69 @@ import moment from 'moment';
 import './Tide.css';
 
 class Tide extends Component {
-  render() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      prevTideTime: null,
+      nextTideTime: null,
+      ratioSincePrevTide: null,
+      highDepth: null,
+      lowDepth: null,
+      highOrLow: true
+    }
+    this.generateTideData = this.generateTideData.bind(this);
+  }
+
+  componentDidMount() {
+    this.generateTideData();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.locationName !== prevProps.locationName) {
+      this.generateTideData();
+    }
+  }
+
+  generateTideData() {
     const timeBetweenTides = 374;
     let timeSincePrevTide = Math.random() * (timeBetweenTides - 1);
     let timeTilNextTide = timeBetweenTides - timeSincePrevTide;
     let prevTideTime = moment().subtract(timeSincePrevTide, 'minutes').format('h:mm a');
     let nextTideTime = moment().add(timeTilNextTide, 'minutes').format('h:mm a');
     let ratioSincePrevTide = timeSincePrevTide / timeBetweenTides;
-    let timelineDistance = (ratioSincePrevTide * 325) + " 0";
     let highDepth = Math.round(10 * (Math.random() * .8 + 3.1)) / 10;
     let lowDepth = Math.round(10 * (Math.random() * .5 + 0.1)) / 10;
+    let highOrLow = Math.round(Math.random());
+    this.setState({
+      prevTideTime,
+      nextTideTime,
+      highDepth,
+      ratioSincePrevTide,
+      lowDepth,
+      highOrLow
+    });
+  }
+
+  render() {
     const nextHighCurve = "M0,105c162.794,0 162.75,-103 325,-103";
     const nextLowCurve = "M0,2c162.794,0 162.75,103 325,103";
     let nextHighLabels = (
       <g className="next-high">
         <g className="tide-label-right" fontFamily="'Overpass-Light','Overpass'" fontSize="10">
           <text className="tide-graph-label" x="289.959" y="29.09" transform="translate(-6.01 -6.728)">
-            {nextTideTime}
+            {this.state.nextTideTime}
           </text>
           <text className="tide-graph-label tide-depth" x="306.28" y="39.09" transform="translate(-6.01 -6.728)">
-            {highDepth}ft
+            {this.state.highDepth}ft
           </text>
           <path className="triangle" d="M325,12.155l-6,0l3,-5.155l3,5.155Z" />
         </g>
         <g className="tide-label-left" fontFamily="'Overpass-Light','Overpass'" fontSize="10">
           <text className="tide-graph-label" x="288.959" y="29.09" transform="translate(-289.418 52.657)">
-            {prevTideTime}
+            {this.state.prevTideTime}
           </text>
           <text className="tide-graph-label tide-depth" x="288.959" y="39.09" transform="translate(-289.418 52.657)">
-            {lowDepth}ft
+            {this.state.lowDepth}ft
           </text>
           <path className="triangle" d="M0,94.845l6,0l-3,5.155l-3,-5.155Z" />
         </g>
@@ -41,28 +75,28 @@ class Tide extends Component {
       <g className="next-low">
         <g className="tide-label-right" fontFamily="'Overpass-Light','Overpass'" fontSize="10">
           <text className="tide-graph-label" x="288.959" y="29.09" transform="translate(-289.418 -6.728)">
-            {prevTideTime}
+            {this.state.prevTideTime}
           </text>
           <text className="tide-graph-label tide-depth" x="288.959" y="39.09" transform="translate(-289.418 -6.728)">
-            {highDepth}ft
+            {this.state.highDepth}ft
           </text>
           <path className="triangle" d="M319,94.845l6,0l-3,5.155l-3,-5.155Z" />
         </g>
         <g className="tide-label-left" fontFamily="'Overpass-Light','Overpass'" fontSize="10">
           <text className="tide-graph-label" x="288.959" y="29.09" transform="translate(-6.01 52.657)">
-            {nextTideTime}
+            {this.state.nextTideTime}
           </text>
           <text className="tide-graph-label tide-depth" x="308.28" y="39.09" transform="translate(-6.01 52.657)">
-            {lowDepth}ft
+            {this.state.lowDepth}ft
           </text>
           <path className="triangle" d="M6,12.155l-6,0l3,-5.155l3,5.155Z" />
         </g>
       </g>
     );
 
-    let highOrLow = Math.round(Math.random());
-    let curve = highOrLow ? nextHighCurve : nextLowCurve;
-    let labels = highOrLow ? nextHighLabels : nextLowLabels;
+    let curve = this.state.highOrLow ? nextHighCurve : nextLowCurve;
+    let labels = this.state.highOrLow ? nextHighLabels : nextLowLabels;
+    let timelineDistance = (this.state.ratioSincePrevTide * 325) + " 0";
     
     
 
