@@ -8,10 +8,10 @@ class Tide extends Component {
     let nextHighLabels = (
       <g className="next-high">
         <g className="tide-label-right" fontFamily="'Overpass-Light','Overpass'" fontSize="10">
-          <text className="tide-graph-label" x="288.959" y="29.09" transform="translate(-6.01 -6.728)">
+          <text className="tide-graph-label" x="289.959" y="29.09" transform="translate(-6.01 -6.728)">
             12:00 PM
           </text>
-          <text className="tide-graph-label" x="308.28" y="39.09" transform="translate(-6.01 -6.728)">
+          <text className="tide-graph-label tide-depth" x="306.28" y="39.09" transform="translate(-6.01 -6.728)">
             3.0 ft
           </text>
           <path className="triangle" d="M325,12.155l-6,0l3,-5.155l3,5.155Z" />
@@ -20,7 +20,7 @@ class Tide extends Component {
           <text className="tide-graph-label" x="288.959" y="29.09" transform="translate(-289.418 52.657)">
             12:00 PM
           </text>
-          <text className="tide-graph-label" x="288.959" y="39.09" transform="translate(-289.418 52.657)">
+          <text className="tide-graph-label tide-depth" x="288.959" y="39.09" transform="translate(-289.418 52.657)">
             3.0 ft
           </text>
           <path className="triangle" d="M0,94.845l6,0l-3,5.155l-3,-5.155Z" />
@@ -33,7 +33,7 @@ class Tide extends Component {
           <text className="tide-graph-label" x="288.959" y="29.09" transform="translate(-289.418 -6.728)">
             12:00 PM
           </text>
-          <text className="tide-graph-label" x="288.959" y="39.09" transform="translate(-289.418 -6.728)">
+          <text className="tide-graph-label tide-depth" x="288.959" y="39.09" transform="translate(-289.418 -6.728)">
             3.0 ft
           </text>
           <path className="triangle" d="M319,94.845l6,0l-3,5.155l-3,-5.155Z" />
@@ -42,7 +42,7 @@ class Tide extends Component {
           <text className="tide-graph-label" x="288.959" y="29.09" transform="translate(-6.01 52.657)">
             12:00 PM
           </text>
-          <text className="tide-graph-label" x="308.28" y="39.09" transform="translate(-6.01 52.657)">
+          <text className="tide-graph-label tide-depth" x="308.28" y="39.09" transform="translate(-6.01 52.657)">
             3.0 ft
           </text>
           <path className="triangle" d="M6,12.155l-6,0l3,-5.155l3,5.155Z" />

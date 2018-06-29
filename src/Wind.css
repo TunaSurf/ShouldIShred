@@ -1,3 +1,10 @@
 .conditions {
   font-size: 2em;
 }
+
+.conditions-details {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: start;
+  column-gap: 10px;
+}

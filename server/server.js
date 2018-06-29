@@ -28,6 +28,22 @@ async function getBuoyData() {
   return buoyData
 }
 
+
+//GET TIDE DATA FOR VIRGINIA BEACH (BUOY IS LOCATED AT HRBT)
+//
+// async function getTideData() {
+//   const tideURL = 'https://tidesandcurrents.noaa.gov/api/datagetter?begin_date=20180628&range=48&station=8638901&product=predictions&datum=MLLW&units=english&time_zone=gmt&application=ports_screen&format=csv';
+//   let tideData = await fetch(tideURL)
+//     .then(res => res.text())
+//     .then(body => buoy.default.Tide.parse(body))
+//     .catch(err => console.error(err));
+
+//   let testDate = new Date("2018-06-29 03:56 GMT+0000");
+//   let tideCurrent = buoy.default.Tide.getNextHighOrLow(tideData, testDate);
+//   console.log(tideCurrent);
+// }
+
+
 function updateDB() {
   getBuoyData()
     .then(res => {
@@ -37,7 +53,7 @@ function updateDB() {
           let windId = location.windId;
           let waveBuoyMatch = res.find(buoy => buoy.stationID == waveId);
           let windBuoyMatch = res.find(buoy => buoy.stationID == windId);
-          console.log(waveBuoyMatch);
+          // console.log(waveBuoyMatch);
           Location.updateMany({ waveId: waveId }, { $set: { 
             time: new Date().toISOString(),
             swellHeight: waveBuoyMatch ? waveBuoyMatch.waveHeight : 0,

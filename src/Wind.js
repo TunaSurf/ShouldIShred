@@ -16,9 +16,14 @@ class Wind extends Component {
     return (
       <div className="card-contents">
         <h2 className="conditions">{this.props.texture}</h2>
-        <p>Wind: {this.props.windSpeed}mph {windDirection} {this.props.windCompass} <span>{arrow}</span></p>
-        <p>Air Temp: {toDegF(this.props.airTemp)}</p>
-        <p>Water Temp: {toDegF(this.props.waterTemp)}</p>
+        <section className="conditions-details">
+          <p>Wind:</p>
+          <p>{this.props.windSpeed}mph <span className="direction">{windDirection} {this.props.windCompass}</span><span className="arrow-span">{arrow}</span></p>
+          <p>Air:</p>
+          <p>{toDegF(this.props.airTemp)}</p>
+          <p>Water:</p>
+          <p>{toDegF(this.props.waterTemp)}</p>
+        </section>
       </div>
     );
   }

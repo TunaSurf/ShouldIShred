@@ -12,7 +12,7 @@ class Swell extends Component {
     return (
       <div className="card-contents">
         <h2 className="swell-height">{this.props.swellHeight}ft</h2>
-        <p>{this.props.swellPeriod}sec {swellDirection} {this.props.swellCompass} <span>{arrow}</span></p>
+        <p>{this.props.swellPeriod}sec <span className="direction">{swellDirection} {this.props.swellCompass}</span><span className="arrow-span">{arrow}</span></p>
       </div>
     );
   }
