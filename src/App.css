@@ -1,0 +1,10 @@
+.logo-font {
+  font-family: "Permanent Marker";
+}
+
+.option-hint {
+  text-align: center;
+  font-size: 0.9em;
+  color: rgba(0,0,0,0.54);
+  margin-bottom: 10px;
+}

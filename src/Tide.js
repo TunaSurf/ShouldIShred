@@ -13,7 +13,6 @@ class Tide extends Component {
       lowDepth: null,
       highOrLow: true
     }
-    this.generateTideData = this.generateTideData.bind(this);
   }
 
   componentDidMount() {

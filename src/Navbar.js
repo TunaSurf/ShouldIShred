@@ -63,7 +63,7 @@ class Navbar extends Component {
                   <path d="M0 0h44v3H0z" />
                 </g>
               </svg>
-              <span>Shred</span></button>
+              <span className="logo-font">Shred</span></button>
           </div>
 
           <div className="nav-right">

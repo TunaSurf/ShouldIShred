@@ -26,7 +26,6 @@
   left: -300px;
   background: #FAFAFA;
   padding: 16px;
-  padding-top: 70px;
   box-sizing: border-box;
   box-shadow: 0 0 18px rgba(0,0,0,0.18), 0 0 5px rgba(0,0,0,0.24);
   transition: left 500ms cubic-bezier(.17,.67,.16,.99);
@@ -46,3 +45,11 @@
   transform: translateX(0);
   opacity: 1;
 }
+
+.sidebar-options h3 {
+  text-align: center;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  margin-bottom: 16px;
+}
+

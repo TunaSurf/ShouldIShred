@@ -18,6 +18,8 @@ class Sidebar extends Component {
           onClick={this.handleClickInside}
         >
           <div className={this.props.showSidebar ? "sidebar-options show-sidebar" : "sidebar-options"} >
+            <h3 className="logo-font">Shred</h3>
+            <p className="option-hint">Choose Location</p>
             <Options setLocation={this.props.setLocation} />
           </div>  
         </section>
