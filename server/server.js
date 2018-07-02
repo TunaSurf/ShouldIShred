@@ -68,9 +68,12 @@ function updateDB() {
           } }, function(err) {
             if(err) console.log(err);
           });
-        })
+        }, function (err) {
+          if (err) console.log(err);
+        });
       })
     })
+    .catch(err => console.log(err));
 }
 
 updateDB();
@@ -87,10 +90,6 @@ app.get('/:location', function (req, res) {
     }
   });
 });
-
-// app.update('/:location', function(req, res) {
-
-// })
 
 const PORT = process.env.PORT || 5000;
 app.listen(5000, () => {
