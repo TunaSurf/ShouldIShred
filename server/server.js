@@ -47,31 +47,32 @@ async function getBuoyData() {
 function updateDB() {
   getBuoyData()
     .then(res => {
-      Location.find({}, function (err, locations) {
-        locations.forEach(location => {
-          let waveId = location.waveId;
-          let windId = location.windId;
-          let waveBuoyMatch = res.find(buoy => buoy.stationID == waveId);
-          let windBuoyMatch = res.find(buoy => buoy.stationID == windId);
-          // console.log(waveBuoyMatch);
-          Location.updateMany({ waveId: waveId }, { $set: { 
-            time: new Date().toISOString(),
-            swellHeight: waveBuoyMatch ? waveBuoyMatch.waveHeight : 0,
-            swellDirection: waveBuoyMatch ? waveBuoyMatch.dominantPeriodWaveDirection : 0,
-            swellCompass: waveBuoyMatch ? waveBuoyMatch.dominantPeriodWaveDirectionCompass : "N",
-            swellPeriod: waveBuoyMatch ? waveBuoyMatch.wavePeriod : 0,
-            windSpeed: windBuoyMatch ? windBuoyMatch.windSpeed : 0,
-            windDirection: windBuoyMatch ? windBuoyMatch.windDirection : 0,
-            windCompass: windBuoyMatch ? windBuoyMatch.windDirectionCompass : "N",
-            airTemp: windBuoyMatch ? windBuoyMatch.airTemp : 0,
-            waterTemp: waveBuoyMatch ? waveBuoyMatch.waterTemp : 0
-          } }, function(err) {
-            if(err) console.log(err);
+      if(res) {
+        Location.find({}, function (err, locations) {
+          locations.forEach(location => {
+            let waveId = location.waveId;
+            let windId = location.windId;
+            let waveBuoyMatch = res.find(buoy => buoy.stationID == waveId);
+            let windBuoyMatch = res.find(buoy => buoy.stationID == windId);
+            Location.updateMany({ waveId: waveId }, { $set: { 
+              time: new Date().toISOString(),
+              swellHeight: waveBuoyMatch ? waveBuoyMatch.waveHeight : 0,
+              swellDirection: waveBuoyMatch ? waveBuoyMatch.dominantPeriodWaveDirection : 0,
+              swellCompass: waveBuoyMatch ? waveBuoyMatch.dominantPeriodWaveDirectionCompass : "N",
+              swellPeriod: waveBuoyMatch ? waveBuoyMatch.wavePeriod : 0,
+              windSpeed: windBuoyMatch ? windBuoyMatch.windSpeed : 0,
+              windDirection: windBuoyMatch ? windBuoyMatch.windDirection : 0,
+              windCompass: windBuoyMatch ? windBuoyMatch.windDirectionCompass : "N",
+              airTemp: windBuoyMatch ? windBuoyMatch.airTemp : 0,
+              waterTemp: waveBuoyMatch ? waveBuoyMatch.waterTemp : 0
+            } }, function(err) {
+              if(err) console.log(err);
+            });
+          }, function (err) {
+            if (err) console.log(err);
           });
-        }, function (err) {
-          if (err) console.log(err);
-        });
-      })
+        })
+      }
     })
     .catch(err => console.log(err));
 }
