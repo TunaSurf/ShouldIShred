@@ -2,7 +2,7 @@ const express     = require('express'),
       mongoose    = require('mongoose'),
       fetch       = require('node-fetch'),
       buoy        = require('buoy-js'),
-  url = process.env.PROD_MONGODB,
+  url = 'mongodb://chase:ev8R4ePfZVjy@ds125031.mlab.com:25031/shred_db',
       Location    = require('./models/location.js');
 
 const app         = express();
