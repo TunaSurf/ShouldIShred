@@ -16,7 +16,8 @@ class OptionsPage extends Component {
   }
 
   render() {
-    let about = this.state.showAbout ? <div className="about">Swell height and weather data gathered from the nearest <a href="https://www.ndbc.noaa.gov">NOAA</a> provided buoy. Created by <a href="https://ChaseBurgess.com">Chase Burgess</a></div> : null;
+    let showAbout = this.state.showAbout ? { display: "block" } : { display: "none" };
+    
 
     return (
       <section className="options-page">
@@ -24,7 +25,9 @@ class OptionsPage extends Component {
         <p className="option-hint">Local surf reports</p>
         <Options />
         <p className="about-click" onClick={this.handleAboutClick}>About Should I Shred</p>
-        {about}
+        <p className="about" style={showAbout}>
+          Swell height and weather data gathered from the nearest <a href="https://www.ndbc.noaa.gov">NOAA</a> provided buoy. Created by <a href="https://ChaseBurgess.com">Chase Burgess</a>
+        </p>
       </section>
     );
   }

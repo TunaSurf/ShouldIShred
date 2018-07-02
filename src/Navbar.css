@@ -24,6 +24,11 @@
   align-items: center;
 }
 
+/*needed for safari*/
+.nav-left button:active {
+  color: rgba(0,0,0,0.87);
+}
+
 .nav-left button svg {
   width: 20px;
   margin-right: 10px;
