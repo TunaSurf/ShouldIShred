@@ -2,7 +2,8 @@ const express     = require('express'),
       mongoose    = require('mongoose'),
       fetch       = require('node-fetch'),
       buoy        = require('buoy-js'),
-      url         = 'mongodb://localhost/shred_db',
+      // url         = 'mongodb://localhost/shred_db',
+  url = 'mongodb://<dbuser>:<dbpassword>@ds125031.mlab.com:25031/shred_db'
       Location    = require('./models/location.js');
 
 const app         = express();
