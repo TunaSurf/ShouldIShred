@@ -54,6 +54,7 @@ function updateDB() {
             let windId = location.windId;
             let waveBuoyMatch = res.find(buoy => buoy.stationID == waveId);
             let windBuoyMatch = res.find(buoy => buoy.stationID == windId);
+            //same buoy used for multiple beaches sometimes, therefore must use updateMany
             Location.updateMany({ waveId: waveId }, { $set: { 
               time: new Date().toISOString(),
               swellHeight: waveBuoyMatch ? waveBuoyMatch.waveHeight : 0,
@@ -86,7 +87,7 @@ app.get('/:location', function (req, res) {
     if(err) {
       console.log(err);
     } else {
-      console.log(location[0]);
+      // console.log(location[0]);
       res.json(location[0]);
     }
   });

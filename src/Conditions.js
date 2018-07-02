@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './Wind.css';
+import './Conditions.css';
 
-class Wind extends Component {
+class Conditions extends Component {
   render() {
     function toDegF(c) {
       return Math.round(c * 1.8 + 32) + "°F";
@@ -29,4 +29,4 @@ class Wind extends Component {
   }
 }
 
-export default Wind;
+export default Conditions;

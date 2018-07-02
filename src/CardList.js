@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './CardList.css';
 import Card from './Card';
 import Swell from './Swell';
-import Wind from './Wind';
+import Wind from './Conditions';
 import Tide from './Tide';
 
 class CardList extends Component {
