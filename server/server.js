@@ -3,7 +3,7 @@ const express     = require('express'),
       fetch       = require('node-fetch'),
       buoy        = require('buoy-js'),
       // url         = 'mongodb://localhost/shred_db',
-  url = 'mongodb://chase:password1@ds125031.mlab.com:25031/shred_db'
+  url = 'mongodb://localhost:27017/shred_db'
       Location    = require('./models/location.js');
 
 const app         = express();
@@ -95,6 +95,6 @@ app.get('/:location', function (req, res) {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(5000, () => {
+app.listen(PORT, () => {
   console.log("Server has started");
 });
