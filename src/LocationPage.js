@@ -44,7 +44,10 @@ class LocationPage extends Component {
 
   setFromApi(location) {
     this.callApi(location)
-      .then(res => this.setState({ locationData: res, isLoaded: true }))
+      .then(res => {
+        this.setState({ locationData: res, isLoaded: true });
+        document.title = res.locationName + " Surf Report | Should I Shred";
+      })
       .catch(err => console.log(err));
   }
 
