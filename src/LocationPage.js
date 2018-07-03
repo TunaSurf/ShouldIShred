@@ -46,7 +46,8 @@ class LocationPage extends Component {
   }
 
   callApi = async (location) => {
-    const response = await fetch(location);
+    let url = "https://should-i-shred-api.herokuapp.com" + location;
+    const response = await fetch(url);
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
@@ -84,10 +85,6 @@ class LocationPage extends Component {
           texture={texture}
           handleOpenSidebar={this.handleOpenSidebar}
         />
-        <Sidebar
-          showSidebar={this.state.showSidebar}
-          closeSidebar={this.handleCloseSidebar}
-        />
         <CardList
           locationName={this.state.locationData.locationName}
           swellHeight={swellHeight}
@@ -102,6 +99,10 @@ class LocationPage extends Component {
           nextTide={this.state.locationData.nextTide}
           airTemp={this.state.locationData.airTemp}
           waterTemp={this.state.locationData.waterTemp}
+        />
+        <Sidebar
+          showSidebar={this.state.showSidebar}
+          closeSidebar={this.handleCloseSidebar}
         />
       </div>
     );

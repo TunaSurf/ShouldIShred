@@ -4,4 +4,6 @@
   margin: 0 auto;
   display: grid;
   grid-gap: 16px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
