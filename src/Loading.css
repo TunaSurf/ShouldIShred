@@ -1,0 +1,35 @@
+.load-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.load-icon {
+  width: 150px;
+}
+
+.load-path {
+  stroke-dasharray: 394;
+  animation: dash 3s infinite linear;
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 394;
+  }
+  45%{
+    stroke-dashoffset: 0;
+  }
+  55%{
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -394;
+  }
+}

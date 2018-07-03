@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './LocationPage.css';
+import Loading from './Loading';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import CardList from './CardList';
@@ -22,7 +23,8 @@ class LocationPage extends Component {
         shoreDirection: 0,
         airTemp: 0,
         waterTemp: 0,
-        timeUpdated: null
+        timeUpdated: null,
+        isLoaded: false
       },
       showSidebar: false
     }
@@ -36,12 +38,13 @@ class LocationPage extends Component {
 
   componentWillReceiveProps(newProps) {
     this.handleCloseSidebar();
+    this.setState({ isLoaded: false });
     this.setFromApi(newProps.match.url);
   }
 
   setFromApi(location) {
     this.callApi(location)
-      .then(res => this.setState({ locationData: res }))
+      .then(res => this.setState({ locationData: res, isLoaded: true }))
       .catch(err => console.log(err));
   }
 
@@ -77,8 +80,14 @@ class LocationPage extends Component {
       texture = "Bumpy";
     }
 
+    let loader = <Loading />;
+    if(this.state.isLoaded){
+      loader = null;
+    }
+
     return (
       <div>
+        {loader}
         <Navbar
           locationName={this.state.locationData.locationName}
           swellHeight={swellHeight}
