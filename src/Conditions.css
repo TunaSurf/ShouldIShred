@@ -6,5 +6,7 @@
   display: grid;
   grid-template-columns: auto auto;
   justify-content: start;
+  -webkit-column-gap: 10px;
+  -moz-column-gap: 10px;
   column-gap: 10px;
 }
