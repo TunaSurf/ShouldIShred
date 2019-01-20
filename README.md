@@ -1,6 +1,6 @@
-﻿# Should I Shred
+﻿![Should I Shred Icon](./public/wave-icon.png)
 
-![Should I Shred Icon](./public/wave-icon.png)
+# Should I Shred
 
 Check your local surf conditions with Should I Shred. Built with React, Node, Express, and MongoDB, this surf conditions tracker is designed to be used for quickly gathering swell information for 100's of locations around the US.
 
