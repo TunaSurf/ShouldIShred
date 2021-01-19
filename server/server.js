@@ -94,6 +94,12 @@ app.get('/:location', function (req, res) {
   });
 });
 
+// Add headers
+app.use(function (req, res, next) {
+    // Allow client website to connect
+    res.setHeader('Access-Control-Allow-Origin', 'https://should-i-shred.herokuapp.com/');
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log("Server has started");
