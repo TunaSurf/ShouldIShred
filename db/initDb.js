@@ -1,3 +1,17 @@
+// *** 
+// We are working in the database set by MONGO_INITDB_DATABASE 
+// in docker-compose.yml ('db' below)
+// ***
+
+// Name a collection "locations" that we will work in.
+collection = db.locations;
+
+// Drop any existing documents in the collection. There shouldn't be 
+// any since this script is ran on container coming up and we aren't
+// saving documents between runs, but we'll do it anyways for now.
+collection.drop();
+
+// List of locations we want in the db and some key attributes.
 const LOCATIONS = [
   {
     "name": "Cape Elizabeth",
@@ -763,31 +777,47 @@ const LOCATIONS = [
   },
 ];
 
-locationArr.forEach(function(location) {
-  new Location({
-    time: new Date().toISOString(),
-    key: location.name.replace(/\s+/g, '-').toLowerCase(),
-    waveId: location.waveId,
-    windId: location.windId,
-    locationName: location.name,
-    swellHeight: 3,
-    swellDirection: 3,
-    swellCompass: 'ESE',
-    swellPeriod: 3,
-    windSpeed: 3,
-    windDirection: 3,
-    windCompass: 'NW',
-    airTemp: 75,
-    waterTemp: 65,
-    previousTide: new Date().toISOString(),
-    nextTide: new Date().toISOString(),
-    shoreDirection: location.shoreDirection
-  })
-  .save(function(err, location) {
-    if(err) {
-      console.log(err);
-    } else {
-      console.log('location added to db:', location);
+// The location class has a getDetails method that creates an object 
+// with all the fields we want each document to have. The class also 
+// fills in some default values. Takes in a basic location object.
+class Location {
+  constructor({name, waveId, windId, shoreDirection}) {
+    this.name = name; 
+    this.waveId = waveId; 
+    this.windId = windId; 
+    this.shoreDirection = shoreDirection; 
+    this.time = new Date().toISOString();
+  }
+
+  getDetails() {
+    return {
+      time: this.time,
+      key: this.name.replace(/\s+/g, '-').toLowerCase(),
+      waveId: this.waveId,
+      windId: this.windId,
+      locationName: this.name,
+      swellHeight: 3,
+      swellDirection: 3,
+      swellCompass: 'ESE',
+      swellPeriod: 3,
+      windSpeed: 3,
+      windDirection: 3,
+      windCompass: 'NW',
+      airTemp: 75,
+      waterTemp: 65,
+      previousTide: this.time,
+      nextTide: this.time,
+      shoreDirection: this.shoreDirection
     }
-  })
-})
+  }
+}
+
+// Loop through the list of locations we defined above.
+LOCATIONS.forEach(location => {
+  // Create class object from the location.
+  L = new Location(location);
+
+  // save the resulting detailed location object to the collection as a 
+  // new document.
+  collection.save(L.getDetails());
+});
