@@ -2,20 +2,20 @@ const express     = require('express'),
       mongoose    = require('mongoose'),
       fetch       = require('node-fetch'),
       buoy        = require('buoy-js'),
-      // url         = 'mongodb://localhost/shred_db',
-  url = 'mongodb://localhost:27017/shred_db'
-      Location    = require('./models/location.js');
+      Location    = require('./models/location.js'),
+      initDb      = require('./utilities/initDb.js');
+      
+const app = express();
 
-const app         = express();
+const url = `mongodb://mongo:27017/shred`;
 
 mongoose.Promise = global.Promise;
-mongoose.connect(url, function (err, db) {
-  if (err) {
-    console.log('Unable to connect to the mongoDB server. Error:', err);
-  } else {
-    console.log('Connection established to', url);
-  }
-});
+mongoose.connect(url, { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true 
+  })
+  .catch(err => console.log('Unable to connect to the mongoDB server. Error:', err));
+
 app.use(express.static(__dirname + "/public"));
 
 
@@ -50,29 +50,34 @@ function updateDB() {
     .then(res => {
       if(res) {
         Location.find({}, function (err, locations) {
-          locations.forEach(location => {
-            let waveId = location.waveId;
-            let windId = location.windId;
-            let waveBuoyMatch = res.find(buoy => buoy.stationID == waveId);
-            let windBuoyMatch = res.find(buoy => buoy.stationID == windId);
-            //same buoy used for multiple beaches sometimes, therefore must use updateMany
-            Location.updateMany({ waveId: waveId }, { $set: { 
-              time: new Date().toISOString(),
-              swellHeight: waveBuoyMatch ? waveBuoyMatch.waveHeight : 0,
-              swellDirection: waveBuoyMatch ? waveBuoyMatch.dominantPeriodWaveDirection : 0,
-              swellCompass: waveBuoyMatch ? waveBuoyMatch.dominantPeriodWaveDirectionCompass : "N",
-              swellPeriod: waveBuoyMatch ? waveBuoyMatch.wavePeriod : 0,
-              windSpeed: windBuoyMatch ? windBuoyMatch.windSpeed : 0,
-              windDirection: windBuoyMatch ? windBuoyMatch.windDirection : 0,
-              windCompass: windBuoyMatch ? windBuoyMatch.windDirectionCompass : "N",
-              airTemp: windBuoyMatch ? windBuoyMatch.airTemp : 0,
-              waterTemp: waveBuoyMatch ? waveBuoyMatch.waterTemp : 0
-            } }, function(err) {
-              if(err) console.log(err);
+          if (locations.length) {
+            locations.forEach(location => {
+              let waveId = location.waveId;
+              let windId = location.windId;
+              let waveBuoyMatch = res.find(buoy => buoy.stationID == waveId);
+              let windBuoyMatch = res.find(buoy => buoy.stationID == windId);
+              //same buoy used for multiple beaches sometimes, therefore must use updateMany
+              Location.updateMany({ waveId: waveId }, { $set: { 
+                time: new Date().toISOString(),
+                swellHeight: waveBuoyMatch ? waveBuoyMatch.waveHeight : 0,
+                swellDirection: waveBuoyMatch ? waveBuoyMatch.dominantPeriodWaveDirection : 0,
+                swellCompass: waveBuoyMatch ? waveBuoyMatch.dominantPeriodWaveDirectionCompass : "N",
+                swellPeriod: waveBuoyMatch ? waveBuoyMatch.wavePeriod : 0,
+                windSpeed: windBuoyMatch ? windBuoyMatch.windSpeed : 0,
+                windDirection: windBuoyMatch ? windBuoyMatch.windDirection : 0,
+                windCompass: windBuoyMatch ? windBuoyMatch.windDirectionCompass : "N",
+                airTemp: windBuoyMatch ? windBuoyMatch.airTemp : 0,
+                waterTemp: waveBuoyMatch ? waveBuoyMatch.waterTemp : 0
+              } }, function(err) {
+                if(err) console.log(err);
+              });
+            }, function (err) {
+              if (err) console.log(err);
             });
-          }, function (err) {
-            if (err) console.log(err);
-          });
+          } else {
+            console.log("Running initDb")
+            initDb();
+          }
         })
       }
     })
@@ -88,16 +93,9 @@ app.get('/:location', function (req, res) {
     if(err) {
       console.log(err);
     } else {
-      // console.log(location[0]);
       res.json(location[0]);
     }
   });
-});
-
-// Add headers
-app.use(function (req, res, next) {
-    // Allow client website to connect
-    res.setHeader('Access-Control-Allow-Origin', 'https://should-i-shred.herokuapp.com/');
 });
 
 const PORT = process.env.PORT || 5000;
